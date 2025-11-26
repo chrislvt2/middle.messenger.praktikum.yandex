@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100dvh; /* Динамическая viewport height */
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-rows: 90% 10%; /* Два ряда равной высоты */
+
+  #app {
+    grid-row: 1;
+  }
+
+  nav {
+    grid-row: 2;
+  }
+}
+
+.form {
+  width: 340px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 12px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-page {
+  height: 100%;
+  display: flex;
+
+  &__list {
+    width: 310px;
+    background-color: #FBFBFB;
+
+    border: 1px solid red;
+
+  }
+}
+
+.profile-page {
+  height: 100%;
+  display: flex;
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__profile {
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  &__profile-title {
+    align-self: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  &__profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.text-field {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    color: #1E1E1E;
+  }
+
+  &__value {
+    color: #999999;
+  }
+}
+
+.sidebar-button {
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(251, 251, 251, 1);
+  border-right: 2px solid #EAEAEA;
+}
+
+.error-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 69px;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  &__code {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  &__message {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.button {
+  color: #3369F3;
+  cursor: pointer;
+  border: none;
+  background: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

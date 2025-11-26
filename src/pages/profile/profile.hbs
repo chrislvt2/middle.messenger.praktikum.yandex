@@ -1,0 +1,23 @@
+<div class="profile-page">
+    {{> sidebar-button}}
+
+    <div class="profile-page__content">
+        <div class="profile-page__profile">
+            <div class="profile-page__profile-title">Иван</div>
+            <form class="profile-page__profile-section">
+                {{> text-field title="Почта" value="pochta@yandex.ru"}}
+                {{> text-field title="Логин" value="ivanivanov"}}
+                {{> text-field title="Имя" value="Иван"}}
+                {{> text-field title="Фамилия" value="Иванов"}}
+                {{> text-field title="Имя в чате" value="Иван"}}
+                {{> text-field title="Телефон" value="+7 (909) 967 30 30"}}
+            </form>
+            <div class="profile-page__profile-section">
+                {{> button label="Изменить данные"}}
+                {{> button label="Изменить пароль"}}
+                {{> button label="Выйти"}}
+            </div>
+        </div>
+    </div>
+
+</div>

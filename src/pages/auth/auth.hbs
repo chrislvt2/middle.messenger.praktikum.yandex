@@ -1,0 +1,18 @@
+<form class="form">
+    <div class="form__title">Регистрация</div>
+
+    <div class="form__inputs">
+        {{> form-field label="Почта" name="email" type="email"}}
+        {{> form-field label="Логин" name="login" type="text"}}
+        {{> form-field label="Имя" name="first_name" type="text"}}
+        {{> form-field label="Фамилия" name="second_name" type="text"}}
+        {{> form-field label="Телефон" name="phone" type="tel"}}
+        {{> form-field label="Пароль" name="password" type="password"}}
+        {{> form-field label="Пароль (ещё раз)" name="password_confirm" type="password_confirm"}}
+    </div>
+
+    <div class="form__buttons">
+        {{> button label="Зарегестрироваться"}}
+        {{> button label="Войти"}}
+    </div>
+</form>
