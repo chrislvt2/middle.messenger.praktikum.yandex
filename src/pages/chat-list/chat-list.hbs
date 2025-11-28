@@ -5,7 +5,13 @@
             {{> search-field class="chat-page__search-input" }}
         </div>
         <div class="chat-page__chats">
-            
+            <ul>
+                {{#each previewChats}}
+                    <li>
+                        {{> chat-preview this}}
+                    </li>
+                {{/each}}
+            </ul>
         </div>
     </div>
     <div class="chat-page__messages">Выберите чат, чтобы отправить сообщение</div>

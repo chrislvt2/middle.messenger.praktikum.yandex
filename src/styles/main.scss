@@ -53,6 +53,11 @@ body {
     width: 310px;
     padding: 22px 10px;
     background-color: #FBFBFB;
+
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
   }
 
   &__settings {
@@ -211,4 +216,26 @@ body {
 
 .avatar-label:hover {
   background-color: #0056b3;
+}
+
+.chat-preview {
+  height: 72px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid #EAEAEA;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__content {
+    margin-top: 4px;
+  }
 }

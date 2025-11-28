@@ -1,6 +1,7 @@
 import Handlebars from 'handlebars';
 import * as Pages from './pages';
 import * as Components from './components';
+import { previewChats } from './mockData.ts';
 
 interface StateModel {
     page: string;
@@ -12,6 +13,7 @@ Handlebars.registerPartial('sidebar-button', Components.SidebarButton);
 Handlebars.registerPartial('error', Components.Error);
 Handlebars.registerPartial('avatar', Components.Avatar);
 Handlebars.registerPartial('search-field', Components.SearchField);
+Handlebars.registerPartial('chat-preview', Components.ChatPreview);
 
 export default class App {
     public app: HTMLElement | null;
@@ -21,6 +23,7 @@ export default class App {
     };
 
     private profileEditMode: boolean = false;
+
     private passwordEditMode: boolean = false;
 
     constructor() {
@@ -42,6 +45,9 @@ export default class App {
             template = Handlebars.compile(Pages.RegistrationPage);
         } else if (this.state.page === 'chatListPage') {
             template = Handlebars.compile(Pages.ChatListPage);
+            additionalData = {
+                previewChats: previewChats,
+            };
         } else if (this.state.page === 'profilePage') {
             template = Handlebars.compile(Pages.ProfilePage);
             additionalData = {
@@ -86,7 +92,6 @@ export default class App {
             const returnToLogin = document.getElementById('returnToLogin');
             returnToLogin && returnToLogin.addEventListener('click', () => this.changePage('loginPage'));
         }
-
 
         if (this.state.page === '404Page') {
             const page400ReturnToChatListButton = document.getElementById('page400ReturnToChatListButton');
