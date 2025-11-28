@@ -1,13 +1,13 @@
-<form class="form">
-    <div class="form__title">Вход</div>
-
-    <div class="form__inputs">
-        {{> form-field label="Логин" name="login" type="text"}}
-        {{> form-field label="Пароль" name="password" type="password"}}
-    </div>
-
-    <div class="form__buttons">
-        {{> button label="Авторизоваться"}}
-        {{> button label="Нет аккаунта?"}}
-    </div>
-</form>
+<div class="login-page">
+    <form class="login-page__form form">
+        <div class="form__title">Вход</div>
+        <div class="form__inputs">
+            {{> form-field label="Логин" id="loginAuthField" name="login" type="text"}}
+            {{> form-field label="Пароль" id="passwordAuthField" name="password" type="password"}}
+        </div>
+        <div class="form__buttons">
+            {{> button id="authButton" label="Авторизоваться"}}
+            {{> button id="noAccountButton" label="Нет аккаунта?"}}
+        </div>
+    </form>
+</div>

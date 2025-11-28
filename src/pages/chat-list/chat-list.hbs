@@ -1,10 +1,12 @@
 <div class="chat-page">
     <div class="chat-page__list">
         <div class="chat-page__settings">
-            <div>Профиль</div>
-            <div>Поиск</div>
+            {{> button class="chat-page__profile-button" id="openProfile" label="Профиль"}}
+            {{> search-field class="chat-page__search-input" }}
         </div>
-        <div>Чаты</div>
+        <div class="chat-page__chats">
+            
+        </div>
     </div>
-    <div class="chat-page__messages"> Chat</div>
+    <div class="chat-page__messages">Выберите чат, чтобы отправить сообщение</div>
 </div>
