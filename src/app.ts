@@ -19,7 +19,7 @@ export default class App {
     public app: HTMLElement | null;
 
     public state: StateModel = {
-        page: "chatListPage",
+        page: "loginPage",
     };
 
     private profileEditMode: boolean = false;
@@ -29,7 +29,6 @@ export default class App {
     constructor() {
         this.app = document.getElementById('app');
         this.initEventListeners();
-
     }
 
     public render(): void {
