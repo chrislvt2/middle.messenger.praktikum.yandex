@@ -70,7 +70,10 @@ export default class App {
         navigationItems.forEach(item => {
             item.addEventListener('click', (e: Event) => {
                 e.preventDefault();
-                this.changePage(e.target.dataset.page);
+                const target = e.target as HTMLElement;
+                if (target.dataset.page) {
+                    this.changePage(target.dataset.page);
+                }
             });
         });
     }
@@ -94,12 +97,12 @@ export default class App {
 
         if (this.state.page === '404Page') {
             const page400ReturnToChatListButton = document.getElementById('page400ReturnToChatListButton');
-            page400ReturnToChatListButton.addEventListener('click', () => this.changePage('chatListPage'));
+            page400ReturnToChatListButton && page400ReturnToChatListButton.addEventListener('click', () => this.changePage('chatListPage'));
         }
 
         if (this.state.page === '500Page') {
             const page500ReturnToChatListButton = document.getElementById('page500ReturnToChatListButton');
-            page500ReturnToChatListButton.addEventListener('click', () => this.changePage('chatListPage'));
+            page500ReturnToChatListButton && page500ReturnToChatListButton.addEventListener('click', () => this.changePage('chatListPage'));
         }
 
         if (this.state.page === 'profilePage') {
