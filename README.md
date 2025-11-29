@@ -24,3 +24,7 @@
 - [Страница пользователя с возможностью редактирования данных](/src/pages/profile/profile.hbs)
 - [Страница 404](/src/pages/page404/page404.hbs)
 - [Страница 5**](/src/pages/page500/page500.hbs)
+
+# Ссылка на Netlify
+
+https://silly-travesseiro-22261c.netlify.app/
