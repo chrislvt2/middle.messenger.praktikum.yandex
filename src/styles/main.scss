@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100dvh; /* Динамическая viewport height */
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-rows: 90% 10%; /* Два ряда равной высоты */
+
+  #app {
+    grid-row: 1;
+  }
+
+  nav {
+    grid-row: 2;
+  }
+}
+
+.form {
+  width: 340px;
+  height: 460px;
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+
+  &__inputs {
+    width: 100%;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-page {
+  height: 100%;
+  display: flex;
+
+  &__list {
+    width: 310px;
+    padding: 22px 10px;
+    background-color: #FBFBFB;
+
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
+  }
+
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__profile-button {
+    align-self: flex-end;
+  }
+
+  &__messages {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.login-page,
+.registration-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-page {
+  height: 100%;
+  display: flex;
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__profile {
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  &__profile-title {
+    align-self: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  &__profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.sidebar-button {
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(251, 251, 251, 1);
+  border-right: 2px solid #EAEAEA;
+}
+
+.error-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 69px;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  &__code {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  &__message {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.button {
+  color: #3369F3;
+  cursor: pointer;
+  border: none;
+  background: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.avatar-preview:hover {
+  border-color: #007bff;
+}
+
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.avatar-placeholder {
+  color: #666;
+  text-align: center;
+  font-size: 14px;
+}
+
+.avatar-input {
+  display: none;
+}
+
+.avatar-label {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.avatar-label:hover {
+  background-color: #0056b3;
+}
+
+.chat-preview {
+  height: 72px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid #EAEAEA;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__content {
+    margin-top: 4px;
+  }
+}
