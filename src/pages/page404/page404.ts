@@ -5,11 +5,11 @@ import {ErrorComponent} from "../../components/error/error.ts";
 export class Page404Component extends Block {
     constructor() {
         super({
-            Error: new ErrorComponent({
+            error: new ErrorComponent({
                 code: '404',
                 message: 'Не туда попали',
             }),
-            ReturnToChatListButton: new ButtonComponent({
+            returnToChatListButton: new ButtonComponent({
                 id: "page400ReturnToChatListButton",
                 label: "Назад к чатам",
             }),
@@ -18,10 +18,10 @@ export class Page404Component extends Block {
 
     public override render() {
         return `
-            <main class="app">
+            <main id="app">
                 <div class="error-page">
-                    {{{ Error }}}
-                    {{{ ReturnToChatListButton }}}
+                    {{{ error }}}
+                    {{{ returnToChatListButton }}}
                 </div>
             </main>`;
     }

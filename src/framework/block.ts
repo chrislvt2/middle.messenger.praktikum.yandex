@@ -76,7 +76,7 @@ export class Block {
     }
 
     protected componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        console.log(oldProps, newProps);
+        // console.log(oldProps, newProps);
         return true;
     }
 
@@ -142,7 +142,6 @@ export class Block {
     }
 
     private _render(): void {
-        console.log('Render');
         const propsAndStubs = { ...this.props };
         const tmpId =  Math.floor(100000 + Math.random() * 900000);
         Object.entries(this.children).forEach(([key, child]) => {

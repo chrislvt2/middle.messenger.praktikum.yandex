@@ -1,58 +1,69 @@
 import {Block} from "../../framework/block.ts";
-import {FormFieldComponent} from "../../components/form-field/form-field.ts";
 import {ButtonComponent} from "../../components/button/button.ts";
+import {FormComponent} from "../../components/form/form.ts";
+import {emailValidator, loginValidator, nameValidator, passwordValidator, phoneValidator} from "../../validation";
 
 export class RegistrationPageComponent extends Block {
     constructor() {
         super({
-            EmailFormField: new FormFieldComponent({
-                id: "emailRegField",
-                type: "email",
-                label: "Почта",
-                name: "email",
+            registrationForm: new FormComponent({
+                title: "Регистрация",
+                formFields: [
+                    {
+                        id: "emailRegField",
+                        type: "email",
+                        label: "Почта",
+                        name: "email",
+                        validator: emailValidator,
+                    },
+                    {
+                        id: "loginRegField",
+                        type: "text",
+                        label: "Логин",
+                        name: "login",
+                        validator: loginValidator,
+                    },
+                    {
+                        id: "first_nameRegField",
+                        type: "text",
+                        label: "Имя",
+                        name: "first_name",
+                        validator: nameValidator,
+                    },
+                    {
+                        id: "second_nameRegField",
+                        type: "text",
+                        label: "Фамилия",
+                        name: "second_name",
+                        validator: nameValidator,
+                    },
+                    {
+                        id: "phoneRegField",
+                        type: "tel",
+                        label: "Телефон",
+                        name: "phone",
+                        validator: phoneValidator,
+                    },
+                    {
+                        id: "passwordRegField",
+                        type: "password",
+                        label: "Пароль",
+                        name: "password",
+                        validator: passwordValidator,
+                    },
+                    {
+                        id: "password_confirmRegField",
+                        type: "password",
+                        label: "Пароль (ещё раз)",
+                        name: "password_confirm",
+                        validator: passwordValidator,
+                    },
+                ],
+                submitButton: {
+                    label: "Зарегестрироваться",
+                },
             }),
-            LoginFormField: new FormFieldComponent({
-                id: "loginRegField",
-                type: "text",
-                label: "Логин",
-                name: "login",
-            }),
-            FirstNameFormField: new FormFieldComponent({
-                id: "first_nameRegField",
-                type: "text",
-                label: "Имя",
-                name: "first_name",
-            }),
-            SecondNameFormField: new FormFieldComponent({
-                id: "second_nameRegField",
-                type: "text",
-                label: "Фамилия",
-                name: "second_name",
-            }),
-            PhoneFormField: new FormFieldComponent({
-                id: "phoneRegField",
-                type: "tel",
-                label: "Телефон",
-                name: "phone",
-            }),
-            PasswordFormField: new FormFieldComponent({
-                id: "passwordRegField",
-                type: "password",
-                label: "Пароль",
-                name: "password",
-            }),
-            PasswordConfirmFormField: new FormFieldComponent({
-                id: "password_confirmRegField",
-                type: "password",
-                label: "Пароль (ещё раз)",
-                name: "password_confirm",
-            }),
-            RegisterButton: new ButtonComponent({
-                id: "registerButton",
-                label: "Зарегестрироваться",
-            }),
-            ReturnToLoginButton: new ButtonComponent({
-                id: "returnToLogin",
+            returnToLoginButton: new ButtonComponent({
                 label: "Войти",
             }),
         });
@@ -60,26 +71,12 @@ export class RegistrationPageComponent extends Block {
 
     public override render() {
         return `
-            <main class="app">
-                <div class="registration-page">
-                    <form class="form">
-                        <div class="form__title">Регистрация</div>
-                
-                        <div class="form__inputs">
-                            {{{ EmailFormField }}}
-                            {{{ LoginFormField }}}
-                            {{{ FirstNameFormField }}}
-                            {{{ SecondNameFormField }}}
-                            {{{ PhoneFormField }}}
-                            {{{ PasswordFormField }}}
-                            {{{ PasswordConfirmFormField }}}
-                        </div>
-                
-                        <div class="form__buttons">
-                            {{{ RegisterButton }}}
-                            {{{ ReturnToLoginButton }}}
-                        </div>
-                    </form>
+            <main id="app">
+                <div class="login-page">
+                    <div class="login-page__wrapper">
+                        {{{ registrationForm }}}
+                        {{{ returnToLoginButton }}}
+                    </div>
                 </div>
             </main>`;
     }

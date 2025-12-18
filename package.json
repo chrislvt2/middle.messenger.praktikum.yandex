@@ -11,8 +11,10 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "vite build && vite preview",
-    "eslint": "npx eslint .",
-    "stylelint": "npx stylelint **/*.scss",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:css": "stylelint **/*.scss",
+    "lint:css:fix": "stylelint **/*.scss --fix",
     "tsc": "tsc --noEmit --watch"
   },
   "devDependencies": {

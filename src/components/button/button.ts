@@ -1,12 +1,19 @@
 import {Block, type BlockProps} from "../../framework/block.ts";
 
+export interface ButtonProps extends BlockProps {
+    label: string;
+    type?: string;
+}
+
 export class ButtonComponent extends Block {
-    constructor(props: BlockProps) {
+    constructor(props: ButtonProps) {
         super({
             ...props,
             events: {
                 click: (e: Event) => {
-                    props.onClick(e);
+                    if (props?.onClick) {
+                        props.onClick(e);
+                    }
                 },
             },
         });
@@ -14,7 +21,7 @@ export class ButtonComponent extends Block {
 
     override render() {
         return `
-            <button class="{{class}} button" id="{{id}}" data-page="{{data-page}}">
+            <button class="{{class}} button" type={{type}} data-page="{{data-page}}">
                 {{label}}
             </button>
         `;

@@ -3,11 +3,11 @@
 }
 
 body {
-  min-height: 100dvh; /* Динамическая viewport height */
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-rows: 90% 10%; /* Два ряда равной высоты */
+  grid-template-rows: 90% 10%;
 
   #app {
     grid-row: 1;
@@ -19,24 +19,24 @@ body {
 }
 
 .form {
-  width: 340px;
-  height: 460px;
-  padding: 50px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 12px;
-  box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
-
-  &__inputs {
     width: 100%;
-  }
 
-  &__buttons {
     display: flex;
     flex-direction: column;
-  }
+    align-items: center;
+    justify-content: center;
+
+    &__inputs {
+        width: 100%;
+    }
+
+    &._disabled {
+        input {
+            border: none;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    }
 }
 
 .form-field {
@@ -58,6 +58,22 @@ body {
       list-style-type: none;
     }
   }
+    &__main-content {
+        width: 100%;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    &__messages {
+        height: 100%;
+    }
+
+    &__message-form-wrapper {
+        .form {
+            flex-direction: row;
+        }
+    }
 
   &__settings {
     display: flex;
@@ -84,6 +100,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.login-page__wrapper {
+    width: 340px;
+    height: 460px;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
 }
 
 .profile-page {
@@ -237,4 +265,10 @@ body {
   &__content {
     margin-top: 4px;
   }
+}
+
+.input {
+    &._invalid {
+        border-color: red;
+    }
 }

@@ -16,6 +16,9 @@
 
 - внедрён компонентный подход
 и реализованы классы [Block](/src/framework/block.ts) и [EventBus](/src/framework/event-bus.ts);
+- в console.log выводится объект формы со всеми заполненными полями;
+- добавлен единый механизм валидации по событиям blur и submit с использованием регулярных выражений;
+- доработана страница чатов и ленты переписки;
 - реализован класс [HTTPTransport](/src/framework/http-transport.ts) для работы с `GET`, `PUT`, `POST` и `DELETE`
 запросами, используя инструменты `Promise` и `XHR`;
 - код проекта стал единообразным, настроены `ESlint` ([eslintconfig.js](eslint.config.js)),

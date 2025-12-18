@@ -1,18 +1,43 @@
 import {Block} from "../../framework/block.ts";
 import {ButtonComponent} from "../../components/button/button.ts";
 import {SearchFieldComponent} from "../../components/search-field/search-field.ts";
-import {previewChats} from '../../mockData.ts';
+import {type PreviewChatModel, previewChats} from '../../mockData.ts';
+import {FormComponent} from "../../components/form/form.ts";
+import {messageValidator} from "../../validation";
+import {ChatPreviewComponent} from "../../components/chat-preview/chat-preview.ts";
 
 
 export class ChatListPageComponent extends Block {
     constructor() {
-        super({
-            previewChats: previewChats,
+        const chatPreviewFields = previewChats.map((previewChat: PreviewChatModel) => {
+            return new ChatPreviewComponent({
+                data: previewChat,
+                clickHandler: (selectedData: PreviewChatModel) => {
+                    this.setProps({ selected: selectedData});
+                },
+            });
+        })
 
-            SearchField: new SearchFieldComponent({
+        super({
+            chatPreviewFields,
+            messageForm: new FormComponent({
+                formFields: [
+                    {
+                        id: "messageField",
+                        type: "text",
+                        label: "Введите собщение",
+                        name: "message",
+                        validator: messageValidator,
+                    },
+                ],
+                submitButton: {
+                    label: "Отправить сообщение",
+                },
+            }),
+            searchField: new SearchFieldComponent({
                 class: "chat-page__search-input",
             }),
-            ProfileButton: new ButtonComponent({
+            profileButton: new ButtonComponent({
                 id: "openProfile",
                 label: "Профиль",
             }),
@@ -21,20 +46,34 @@ export class ChatListPageComponent extends Block {
 
     public override render() {
         return `
-            <main class="app">
+            <main id="app">
                 <div class="chat-page">
                     <div class="chat-page__list">
                         <div class="chat-page__settings">
-                            {{{ ProfileButton }}}
-                            {{{ SearchField }}}
+                            {{{ profileButton }}}
+                            {{{ searchField }}}
                         </div>
                         <div class="chat-page__chats">
                             <ul>
-
+                                {{{ chatPreviewFields }}}
                             </ul>
                         </div>
                     </div>
-                    <div class="chat-page__messages">Выберите чат, чтобы отправить сообщение</div>
+                    <div class="chat-page__main-content">
+                        {{#if selected}}
+                            <ul class="chat-page__messages">
+                                <li>
+                                    <div> {{selected.name}}</div>
+                                    <div> {{selected.message}}</div>
+                                </li>
+                            </ul>
+                            <div class="chat-page__message-form-wrapper">
+                                {{{ messageForm }}}
+                            </div>
+                        {{else}}    
+                            <div class="chat-page__messages">Выберите чат, чтобы отправить сообщение</div>
+                        {{/if}}
+                    </div>
                 </div>
             </main>
         `;

@@ -5,11 +5,11 @@ import {ErrorComponent} from "../../components/error/error.ts";
 export class Page500Component extends Block {
     constructor() {
         super({
-            Error: new ErrorComponent({
+            error: new ErrorComponent({
                 code: '500',
                 message: 'Мы уже фиксим',
             }),
-            ReturnToChatListButton: new ButtonComponent({
+            returnToChatListButton: new ButtonComponent({
                 id: "page500ReturnToChatListButton",
                 label: "Назад к чатам",
             }),
@@ -18,10 +18,10 @@ export class Page500Component extends Block {
 
     public override render() {
         return `
-            <main class="app">
+            <main id="app">
                 <div class="error-page">
-                    {{{ Error }}}
-                    {{{ ReturnToChatListButton }}}
+                    {{{ error }}}
+                    {{{ returnToChatListButton }}}
                 </div>
             </main>`;
     }

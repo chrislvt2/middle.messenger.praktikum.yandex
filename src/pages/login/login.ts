@@ -1,28 +1,34 @@
 import {Block} from "../../framework/block.ts";
-import {FormFieldComponent} from "../../components/form-field/form-field.ts";
 import {ButtonComponent} from "../../components/button/button.ts";
+import {FormComponent} from "../../components/form/form.ts";
+import {loginValidator, passwordValidator} from "../../validation";
 
 export class LoginPageComponent extends Block {
     constructor() {
         super({
-            LoginFormField: new FormFieldComponent({
-                id: "loginAuthField",
-                type: "text",
-                label:"Логин",
-                name: "login",
+            loginForm: new FormComponent({
+                title: "Вход",
+                formFields: [
+                    {
+                        id: "loginAuthField",
+                        type: "text",
+                        label:"Логин",
+                        name: "login",
+                        validator: loginValidator,
+                    },
+                    {
+                        id: "passwordAuthField",
+                        type: "password",
+                        label:"Пароль",
+                        name: "password",
+                        validator: passwordValidator,
+                    }
+                ],
+                submitButton: {
+                    label: "Авторизоваться",
+                },
             }),
-            PasswordFormField: new FormFieldComponent({
-                id: "passwordAuthField",
-                type: "password",
-                label:"Пароль",
-                name: "password",
-            }),
-            AuthButton: new ButtonComponent({
-                id: "authButton",
-                label: "Авторизоваться",
-            }),
-            RegisterButton: new ButtonComponent({
-                id: "noAccountButton",
+            registerButton: new ButtonComponent({
                 label: "Нет аккаунта?",
             }),
         });
@@ -30,19 +36,12 @@ export class LoginPageComponent extends Block {
 
     public override render() {
         return `
-            <main class="app">
+            <main id="app">
                 <div class="login-page">
-                    <form class="login-page__form form">
-                        <div class="form__title">Вход</div>
-                        <div class="form__inputs">
-                            {{{ LoginFormField }}}
-                            {{{ PasswordFormField }}}
-                        </div>
-                        <div class="form__buttons">
-                            {{{ AuthButton }}}
-                            {{{ RegisterButton }}}
-                        </div>
-                    </form>
+                    <div class="login-page__wrapper">
+                        {{{ loginForm }}}
+                        {{{ registerButton }}}
+                    </div>
                 </div>
             </main>`;
     }

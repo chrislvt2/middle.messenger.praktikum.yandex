@@ -1,109 +1,127 @@
 import {Block} from "../../framework/block.ts";
-import {FormFieldComponent} from "../../components/form-field/form-field.ts";
 import {ButtonComponent} from "../../components/button/button.ts";
 import {SidebarButtonComponent} from "../../components/sidebar-button/sidebar-button.ts";
+import {FormComponent} from "../../components/form/form.ts";
+import {AvatarComponent} from "../../components/avatar/avatar.ts";
+import {emailValidator, loginValidator, nameValidator, passwordValidator, phoneValidator} from "../../validation";
 
 export class ProfilePageComponent extends Block {
     constructor() {
         super({
             profileEditMode: false,
             passwordEditMode: false,
-
-            SidebarButtonComponent: new SidebarButtonComponent({}),
-
-            PasswordFormField: new FormFieldComponent({
-                id: "oldPasswordField",
-                type: "password",
-                label: "Старый пароль",
-                name: "oldPassword",
-            }),
-            NewPasswordFormField: new FormFieldComponent({
-                id: "newPasswordField",
-                type: "password",
-                label: "Новый пароль",
-                name: "newPassword",
-            }),
-            RepeatedNewPasswordFormField: new FormFieldComponent({
-                id: "repeatedNewPasswordField",
-                type: "password",
-                label: "Повторите новый пароль",
-                name: "repeatedNewPassword",
-            }),
-
-            SavePasswordButton: new ButtonComponent({
-                id: "savePasswordButton",
-                label: "Сохранить",
-                onClick: () => {
-                    this.props.passwordEditMode = false;
+            profileForm: new FormComponent({
+                class: "_disabled",
+                formFields: [
+                    {
+                        id: "emailField",
+                        type: "email",
+                        label: "Почта",
+                        name: "email",
+                        value: "pochta@yandex.ru",
+                        validator: emailValidator,
+                    },
+                    {
+                        id: "loginField",
+                        type: "text",
+                        label: "Логин",
+                        name: "login",
+                        value: "ivanivanov",
+                        validator: loginValidator,
+                    },
+                    {
+                        id: "first_nameField",
+                        type: "text",
+                        label: "Имя",
+                        name: "first_name",
+                        value: "Иван",
+                        validator: nameValidator,
+                    },
+                    {
+                        id: "second_nameField",
+                        type: "text",
+                        label: "Фамилия",
+                        name: "second_name",
+                        value: "Иванов",
+                        validator: nameValidator,
+                    },
+                    {
+                        id: "display_nameField",
+                        type: "text",
+                        label: "Имя в чате",
+                        name: "display_name",
+                        value: "Иван",
+                    },
+                    {
+                        id: "phoneField",
+                        type: "tel",
+                        label: "Телефон",
+                        name: "phone",
+                        value: "+79991234567",
+                        validator: phoneValidator,
+                    },
+                ],
+                submitButton: {
+                    label: "Сохранить",
                 },
-            }),
-
-            EmailFormField: new FormFieldComponent({
-                id: "emailField",
-                type: "email",
-                label: "Почта",
-                name: "email",
-                value: "pochta@yandex.ru",
-            }),
-            LoginFormField: new FormFieldComponent({
-                id: "loginField",
-                type: "text",
-                label: "Логин",
-                name: "login",
-                value: "ivanivanov",
-            }),
-            FirstNameFormField: new FormFieldComponent({
-                id: "first_nameField",
-                type: "text",
-                label: "Имя",
-                name: "first_name",
-                value: "Иван",
-            }),
-            SecondNameFormField: new FormFieldComponent({
-                id: "second_nameField",
-                type: "text",
-                label: "Фамилия",
-                name: "second_name",
-                value: "Иванов",
-            }),
-            DisplayNameFormField: new FormFieldComponent({
-                id: "display_nameField",
-                type: "text",
-                label: "Имя в чате",
-                name: "display_name",
-                value: "Иван",
-            }),
-            PhoneFormField: new FormFieldComponent({
-                id: "phoneField",
-                type: "tel",
-                label: "Телефон",
-                name: "phone",
-                value: "+7 (909) 967 30 30",
-            }),
-
-            SaveProfileButton: new ButtonComponent({
-                id: "saveProfileButton",
-                label: "Сохранить",
-                onClick: () => {
-                    this.props.profileEditMode = false;
+                submitAction: () => {
+                    this.setProps({profileEditMode: false});
+                    this.children.profileForm.setProps({
+                        submitVisible: false,
+                        class: "_disabled",
+                    });
                 },
+                submitVisible: false,
             }),
-
-            EditProfileButton: new ButtonComponent({
+            passwordForm: new FormComponent({
+               formFields: [
+                   {
+                      id: "oldPasswordField",
+                      type: "password",
+                      label: "Старый пароль",
+                      name: "oldPassword",
+                      validator: passwordValidator,
+                   },
+                   {
+                        id: "newPasswordField",
+                        type: "password",
+                        label: "Новый пароль",
+                        name: "newPassword",
+                        validator: passwordValidator,
+                   },
+                   {
+                       id: "repeatedNewPasswordField",
+                       type: "password",
+                       label: "Повторите новый пароль",
+                       name: "repeatedNewPassword",
+                       validator: passwordValidator,
+                   },
+               ],
+               submitButton: {
+                   label: "Сохранить",
+               },
+               submitAction: () => { this.setProps({passwordEditMode: false}); }
+            }),
+            avatarComponent: new AvatarComponent({}),
+            sidebarButtonComponent: new SidebarButtonComponent({}),
+            editProfileButton: new ButtonComponent({
                 id: "editProfileButton",
                 label: "Изменить данные",
                 onClick: () => {
                     this.props.profileEditMode = true;
+                    this.children.profileForm.setProps({
+                        submitVisible: true,
+                        class: "",
+                    });
                 },
             }),
-            EditPasswordButton: new ButtonComponent({
-                id: "editPasswordButton",
+            editPasswordButton: new ButtonComponent({
                 label: "Изменить пароль",
                 onClick: () => {
                     this.props.passwordEditMode = true;
                 },
             }),
-            ExitPasswordButton: new ButtonComponent({
+            exitPasswordButton: new ButtonComponent({
                 id: "exitProfileButton",
                 label: "Выйти",
             }),
@@ -112,45 +130,25 @@ export class ProfilePageComponent extends Block {
 
     public override render() {
         return `
-            <main class="app">
+            <main id="app">
                 <div class="profile-page">
-                    {{{ SidebarButtonComponent }}}
+                    {{{ sidebarButtonComponent }}}
                     <div class="profile-page__content">
                         <div class="profile-page__profile">
-                            {{{ AvatarComponent }}}
+                            {{{ avatarComponent }}}
                             <div class="profile-page__profile-title">Иван</div>
                             {{#if passwordEditMode}}
-                                 <form class="profile-page__profile-section">
-                                    {{{ PasswordFormField }}}
-                                    {{{ NewPasswordFormField }}}
-                                    {{{ RepeatedNewPasswordFormField }}}
-                                </form>
-                                <div class="profile-page__profile-section">
-                                    {{{ SavePasswordButton }}}
-                                </div>
-                            {{else}}  
-                                <form class="profile-page__profile-section"
-                                      id="profileForm"
-                                >
-                                    {{{ EmailFormField }}}
-                                    {{{ LoginFormField }}}
-                                    {{{ FirstNameFormField }}}
-                                    {{{ SecondNameFormField }}}
-                                    {{{ DisplayNameFormField }}}
-                                    {{{ PhoneFormField }}}
-                                </form>
-                                {{#if profileEditMode}}
+                                 {{{ passwordForm }}}
+                            {{else}}
+                                {{{ profileForm }}}
+                                {{#unless profileEditMode}}
                                     <div class="profile-page__profile-section">
-                                        {{{ SaveProfileButton }}}
+                                        {{{ editProfileButton }}}
+                                        {{{ editPasswordButton }}}
+                                        {{{ exitPasswordButton }}}
                                     </div>
-                                {{else}}    
-                                    <div class="profile-page__profile-section">
-                                        {{{ EditProfileButton }}}
-                                        {{{ EditPasswordButton }}}
-                                        {{{ ExitPasswordButton }}}
-                                    </div>
-                                {{/if}}  
-                            {{/if}}    
+                                {{/unless}}
+                            {{/if}}
                         </div>
                     </div>
                 </div>
