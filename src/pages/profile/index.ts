@@ -1,1 +1,1 @@
-export { ProfilePageComponent } from "./profile";
+export {ProfilePageComponent} from "./profile";

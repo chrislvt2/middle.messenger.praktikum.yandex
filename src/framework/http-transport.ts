@@ -15,10 +15,10 @@ type Options = {
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 export class HTTPTransport {
-   get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
         const urlWithQuery = options.data ? this.queryStringify(url, options.data) : url;
         return this.request(urlWithQuery, {...options, method: METHOD.GET});
-   };
+    };
 
     post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
         return this.request(url, {...options, method: METHOD.POST});
@@ -32,8 +32,8 @@ export class HTTPTransport {
         return this.request(url, {...options, method: METHOD.DELETE});
     };
 
-    request(url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> {
-        const { method, data, headers = {}, timeout = 5000 } = options;
+    request(url: string, options: Options = {method: METHOD.GET}): Promise<XMLHttpRequest> {
+        const {method, data, headers = {}, timeout = 5000} = options;
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -45,7 +45,7 @@ export class HTTPTransport {
                 });
             }
 
-            xhr.onload = function() {
+            xhr.onload = function () {
                 resolve(xhr);
             };
 

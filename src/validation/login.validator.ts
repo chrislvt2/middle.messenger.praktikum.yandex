@@ -7,19 +7,19 @@ import type {ValidationResult} from "./validation-result.model.ts";
  */
 export function loginValidator(login: string): ValidationResult {
     if (!login || login.trim() === '') {
-        return { isValid: false, message: 'Логин обязателен для заполнения' };
+        return {isValid: false, message: 'Логин обязателен для заполнения'};
     }
 
     if (login.length < 3 || login.length > 20) {
-        return { isValid: false, message: 'Логин должен содержать от 3 до 20 символов' };
+        return {isValid: false, message: 'Логин должен содержать от 3 до 20 символов'};
     }
 
     if (/\s/.test(login)) {
-        return { isValid: false, message: 'Логин не должен содержать пробелы' };
+        return {isValid: false, message: 'Логин не должен содержать пробелы'};
     }
 
     if (/^[0-9]+$/.test(login)) {
-        return { isValid: false, message: 'Логин не должен состоять только из цифр' };
+        return {isValid: false, message: 'Логин не должен состоять только из цифр'};
     }
 
     if (!/^[a-zA-Z0-9_-]+$/.test(login)) {
@@ -36,5 +36,5 @@ export function loginValidator(login: string): ValidationResult {
         };
     }
 
-    return { isValid: true };
+    return {isValid: true};
 }

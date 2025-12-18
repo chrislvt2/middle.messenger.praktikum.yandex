@@ -1,1 +1,1 @@
-export { Page500Component } from "./page500";
+export {Page500Component} from "./page500";

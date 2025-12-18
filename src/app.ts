@@ -23,20 +23,15 @@ export default class App {
         let page: Block;
         if (this.state.page === 'loginPage') {
             page = new PAGES.LoginPageComponent();
-        }
-        else if (this.state.page === 'registrationPage') {
+        } else if (this.state.page === 'registrationPage') {
             page = new PAGES.RegistrationPageComponent();
-        }
-        else if (this.state.page === '500Page') {
+        } else if (this.state.page === '500Page') {
             page = new PAGES.Page500Component();
-        }
-        else if (this.state.page === 'profilePage') {
+        } else if (this.state.page === 'profilePage') {
             page = new PAGES.ProfilePageComponent();
-        }
-        else if (this.state.page === 'chatListPage') {
+        } else if (this.state.page === 'chatListPage') {
             page = new PAGES.ChatListPageComponent();
-        }
-        else {
+        } else {
             page = new PAGES.Page404Component();
         }
 

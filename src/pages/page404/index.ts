@@ -1,1 +1,1 @@
-export { Page404Component } from "./page404";
+export {Page404Component} from "./page404";

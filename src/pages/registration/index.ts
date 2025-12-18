@@ -1,1 +1,1 @@
-export { RegistrationPageComponent } from "./registration";
+export {RegistrationPageComponent} from "./registration";

@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import { EventBus, type EventCallback } from "./event-bus.ts";
+import {EventBus, type EventCallback} from "./event-bus.ts";
 
 export interface BlockProps {
     [key: string]: unknown;
@@ -27,17 +27,17 @@ export class Block {
 
     constructor(propsWithChildren: BlockProps = {}) {
         const eventBus = new EventBus();
-        const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
-        this.props = this._makePropsProxy({ ...props });
+        const {props, children, lists} = this._getChildrenPropsAndProps(propsWithChildren);
+        this.props = this._makePropsProxy({...props});
         this.children = children;
-        this.lists = this._makePropsProxy({ ...lists });
+        this.lists = this._makePropsProxy({...lists});
         this.eventBus = () => eventBus;
         this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
     }
 
     private _addEvents(): void {
-        const { events = {} } = this.props;
+        const {events = {}} = this.props;
         Object.keys(events as Record<string, EventCallback[]>).forEach((eventName: string): void => {
             if (this._element) {
                 this._element.addEventListener(eventName, events[eventName]);
@@ -58,10 +58,13 @@ export class Block {
 
     private _componentDidMount(): void {
         this.componentDidMount();
-        Object.values(this.children).forEach(child => {child.dispatchComponentDidMount();});
+        Object.values(this.children).forEach(child => {
+            child.dispatchComponentDidMount();
+        });
     }
 
-    protected componentDidMount(): void {}
+    protected componentDidMount(): void {
+    }
 
     public dispatchComponentDidMount(): void {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -95,16 +98,16 @@ export class Block {
             } else if (Array.isArray(value)) {
                 lists[key] = value;
             } else {
-                 
+
                 props[key] = value;
             }
         });
 
-        return { children, props, lists };
+        return {children, props, lists};
     }
 
     protected addAttributes(): void {
-        const { attr = {} } = this.props;
+        const {attr = {}} = this.props;
 
         Object.entries(attr as Record<string, unknown>).forEach(([key, value]) => {
             if (this._element) {
@@ -130,8 +133,8 @@ export class Block {
     };
 
     private _render(): void {
-        const propsAndStubs = { ...this.props };
-        const tmpId =  Math.floor(100000 + Math.random() * 900000);
+        const propsAndStubs = {...this.props};
+        const tmpId = Math.floor(100000 + Math.random() * 900000);
         Object.entries(this.children).forEach(([key, child]) => {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
         });
@@ -194,7 +197,7 @@ export class Block {
                 return typeof value === 'function' ? value.bind(target) : value;
             },
             set(target: Record<string, unknown>, prop: string, value: unknown) {
-                const oldTarget = { ...target };
+                const oldTarget = {...target};
                 target[prop] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
                 return true;

@@ -13,7 +13,7 @@ export interface FormProps extends BlockProps {
 export class FormComponent extends Block {
     constructor(props: FormProps) {
         const fields: FormFieldComponent[] = props.formFields.map((field: FormFieldProps): FormFieldComponent => {
-           return new FormFieldComponent(field);
+            return new FormFieldComponent(field);
         });
 
         const button: ButtonComponent = new ButtonComponent({

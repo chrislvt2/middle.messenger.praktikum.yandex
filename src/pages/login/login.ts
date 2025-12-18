@@ -12,14 +12,14 @@ export class LoginPageComponent extends Block {
                     {
                         id: "loginAuthField",
                         type: "text",
-                        label:"Логин",
+                        label: "Логин",
                         name: "login",
                         validator: loginValidator,
                     },
                     {
                         id: "passwordAuthField",
                         type: "password",
-                        label:"Пароль",
+                        label: "Пароль",
                         name: "password",
                         validator: passwordValidator,
                     }

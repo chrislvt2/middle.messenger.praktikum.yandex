@@ -74,33 +74,35 @@ export class ProfilePageComponent extends Block {
                 submitVisible: false,
             }),
             passwordForm: new FormComponent({
-               formFields: [
-                   {
-                      id: "oldPasswordField",
-                      type: "password",
-                      label: "Старый пароль",
-                      name: "oldPassword",
-                      validator: passwordValidator,
-                   },
-                   {
+                formFields: [
+                    {
+                        id: "oldPasswordField",
+                        type: "password",
+                        label: "Старый пароль",
+                        name: "oldPassword",
+                        validator: passwordValidator,
+                    },
+                    {
                         id: "newPasswordField",
                         type: "password",
                         label: "Новый пароль",
                         name: "newPassword",
                         validator: passwordValidator,
-                   },
-                   {
-                       id: "repeatedNewPasswordField",
-                       type: "password",
-                       label: "Повторите новый пароль",
-                       name: "repeatedNewPassword",
-                       validator: passwordValidator,
-                   },
-               ],
-               submitButton: {
-                   label: "Сохранить",
-               },
-               submitAction: () => { this.setProps({passwordEditMode: false}); }
+                    },
+                    {
+                        id: "repeatedNewPasswordField",
+                        type: "password",
+                        label: "Повторите новый пароль",
+                        name: "repeatedNewPassword",
+                        validator: passwordValidator,
+                    },
+                ],
+                submitButton: {
+                    label: "Сохранить",
+                },
+                submitAction: () => {
+                    this.setProps({passwordEditMode: false});
+                }
             }),
             avatarComponent: new AvatarComponent({}),
             sidebarButtonComponent: new SidebarButtonComponent({}),

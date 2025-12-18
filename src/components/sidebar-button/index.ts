@@ -1,1 +1,1 @@
-export { SidebarButtonComponent } from "./sidebar-button";
+export {SidebarButtonComponent} from "./sidebar-button";

@@ -1,6 +1,6 @@
 import type {ValidationResult} from "./validation-result.model.ts";
 
-export function emailValidator(email: string):  ValidationResult {
+export function emailValidator(email: string): ValidationResult {
     const trimmedEmail = email.trim();
 
     if (!email || trimmedEmail === '') {

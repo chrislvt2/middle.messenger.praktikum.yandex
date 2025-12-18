@@ -13,7 +13,7 @@ export class ChatListPageComponent extends Block {
             return new ChatPreviewComponent({
                 data: previewChat,
                 clickHandler: (selectedData: PreviewChatModel) => {
-                    this.setProps({ selected: selectedData});
+                    this.setProps({selected: selectedData});
                 },
             });
         })
