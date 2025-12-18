@@ -58,7 +58,7 @@ export class HTTPTransport {
             if (method === METHOD.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                xhr.send(data as unknown as Document | XMLHttpRequestBodyInit | null);
             }
         });
     };

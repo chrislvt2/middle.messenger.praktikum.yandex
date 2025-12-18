@@ -1,8 +1,10 @@
 import {Block, type BlockProps} from "../../framework/block.ts";
+import type {EventCallback} from "../../framework/event-bus.ts";
 
 export interface ButtonProps extends BlockProps {
     label: string;
     type?: string;
+    onClick?: EventCallback;
 }
 
 export class ButtonComponent extends Block {

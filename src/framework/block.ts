@@ -30,15 +30,17 @@ export class Block {
         const {props, children, lists} = this._getChildrenPropsAndProps(propsWithChildren);
         this.props = this._makePropsProxy({...props});
         this.children = children;
-        this.lists = this._makePropsProxy({...lists});
+        this.lists = this._makePropsProxy({...lists}) as Record<string, unknown[]>;
         this.eventBus = () => eventBus;
         this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
     }
 
     private _addEvents(): void {
-        const {events = {}} = this.props;
-        Object.keys(events as Record<string, EventCallback[]>).forEach((eventName: string): void => {
+        const props = this.props as { events?: Record<string, EventCallback> };
+        const { events = {} } = props;
+
+        Object.keys(events).forEach((eventName: string): void => {
             if (this._element) {
                 this._element.addEventListener(eventName, events[eventName]);
             }
@@ -155,7 +157,7 @@ export class Block {
 
         Object.entries(this.lists).forEach(([, child]) => {
             const listCont = this._createDocumentElement('template');
-            child.forEach(item => {
+            (child as unknown[]).forEach(item => {
                 if (item instanceof Block) {
                     listCont.content.append(item.getContent());
                 } else {
@@ -188,7 +190,7 @@ export class Block {
         return this._element;
     }
 
-    private _makePropsProxy(props: Record<string, unknown>): unknown {
+    private _makePropsProxy(props: Record<string, unknown>): BlockProps {
         const self = this;
 
         return new Proxy(props, {

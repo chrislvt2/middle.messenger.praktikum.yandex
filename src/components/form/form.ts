@@ -32,7 +32,7 @@ export class FormComponent extends Block {
                     e.preventDefault();
 
                     let valid = true;
-                    this.lists.fields.forEach((field: FormFieldComponent): void => {
+                    (this.lists.fields as FormFieldComponent[]).forEach((field: FormFieldComponent): void => {
                         valid = field.validate() && valid;
                     });
 
@@ -43,7 +43,7 @@ export class FormComponent extends Block {
                     console.log('---');
 
                     if (valid) {
-                        this.props?.submitAction && this.props.submitAction();
+                        this.props?.submitAction && (this.props.submitAction as () => void)();
                     }
                 },
             },

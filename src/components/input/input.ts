@@ -28,11 +28,11 @@ export class InputComponent extends Block {
             return true;
         }
 
-        const result: ValidationResult = this.props.validator(this.value);
+        const result: ValidationResult = (this.props.validator as (...args: unknown[]) => ValidationResult)(this.value);
         this.setAttributes({
             class: result.isValid ? 'input' : 'input invalid',
         });
-        this.props.validationHandler(result);
+        (this.props.validationHandler as ((...args: unknown[]) => void))(result);
 
         return result.isValid;
     }

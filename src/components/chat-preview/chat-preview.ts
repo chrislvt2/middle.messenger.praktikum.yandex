@@ -12,7 +12,8 @@ export class ChatPreviewComponent extends Block {
             ...props,
             events: {
                 click: () => {
-                    this.props.clickHandler(this.props.data);
+                    props.clickHandler(props.data);
+                    return;
                 },
             },
         });
