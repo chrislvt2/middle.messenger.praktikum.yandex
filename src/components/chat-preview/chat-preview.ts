@@ -1,13 +1,13 @@
 import {Block, type BlockProps} from "../../framework/block.ts";
 import type {PreviewChatModel} from "../../mockData.ts";
 
-export interface CharPreviewProps extends BlockProps {
+export interface ChatPreviewProps extends BlockProps {
     data: PreviewChatModel;
     clickHandler: (selectedData: PreviewChatModel) => void;
 }
 
 export class ChatPreviewComponent extends Block {
-    constructor(props: CharPreviewProps) {
+    constructor(props: ChatPreviewProps) {
         super({
             ...props,
             events: {

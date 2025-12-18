@@ -1,6 +1,6 @@
 import {Block, type BlockProps} from "../../framework/block.ts";
-import {FormFieldComponent, type FormFieldProps} from "../form-field/form-field.ts";
-import {ButtonComponent, type ButtonProps} from "../button/button.ts";
+import {FormFieldComponent, type FormFieldProps} from "../form-field";
+import {ButtonComponent, type ButtonProps} from "../button";
 
 export interface FormProps extends BlockProps {
     formFields: FormFieldProps[];
@@ -38,7 +38,9 @@ export class FormComponent extends Block {
 
                     const formData: FormData = new FormData(e.target as HTMLFormElement);
                     const data = Object.fromEntries(formData.entries());
-                    console.log(data);
+                    console.log('---');
+                    console.log('Форма со всеми заполненными полями', data);
+                    console.log('---');
 
                     if (valid) {
                         this.props?.submitAction && this.props.submitAction();

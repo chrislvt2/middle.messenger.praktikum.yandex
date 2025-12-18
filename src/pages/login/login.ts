@@ -1,6 +1,6 @@
 import {Block} from "../../framework/block.ts";
-import {ButtonComponent} from "../../components/button/button.ts";
-import {FormComponent} from "../../components/form/form.ts";
+import {ButtonComponent} from "../../components";
+import {FormComponent} from "../../components";
 import {loginValidator, passwordValidator} from "../../validation";
 
 export class LoginPageComponent extends Block {

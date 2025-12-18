@@ -1,9 +1,5 @@
-import {LoginPageComponent} from "./pages/login/login";
-import {RegistrationPageComponent} from "./pages/registration/registration.ts";
-import {Page404Component} from "./pages/page404/page404.ts";
-import {Page500Component} from "./pages/page500/page500.ts";
-import {ProfilePageComponent} from "./pages/profile/profile.ts";
-import {ChatListPageComponent} from "./pages/chat-list/chat-list.ts";
+import * as PAGES from "./pages";
+import {Block} from "./framework/block.ts";
 
 interface StateModel {
     page: string;
@@ -13,7 +9,7 @@ export default class App {
     public app: HTMLElement | null;
 
     public state: StateModel = {
-        page: "profilePage",
+        page: "loginPage",
     };
 
     constructor() {
@@ -23,41 +19,29 @@ export default class App {
 
     public render(): void {
         this.app = document.getElementById('app');
+
+        let page: Block;
         if (this.state.page === 'loginPage') {
-            let p: LoginPageComponent = new LoginPageComponent();
-            if (this.app) {
-                this.app.replaceWith(p.getContent());
-            }
+            page = new PAGES.LoginPageComponent();
         }
         else if (this.state.page === 'registrationPage') {
-            const page: RegistrationPageComponent = new RegistrationPageComponent();
-            if (this.app) {
-                this.app.replaceWith(page.getContent());
-            }
-        }
-        else if (this.state.page === '404Page') {
-            const page: Page404Component = new Page404Component();
-            if (this.app) {
-                this.app.replaceWith(page.getContent());
-            }
+            page = new PAGES.RegistrationPageComponent();
         }
         else if (this.state.page === '500Page') {
-            const page: Page500Component = new Page500Component();
-            if (this.app) {
-                this.app.replaceWith(page.getContent());
-            }
+            page = new PAGES.Page500Component();
         }
         else if (this.state.page === 'profilePage') {
-            const page: ProfilePageComponent = new ProfilePageComponent();
-            if (this.app) {
-                this.app.replaceWith(page.getContent());
-            }
+            page = new PAGES.ProfilePageComponent();
         }
         else if (this.state.page === 'chatListPage') {
-            const page: ChatListPageComponent = new ChatListPageComponent();
-            if (this.app) {
-                this.app.replaceWith(page.getContent());
-            }
+            page = new PAGES.ChatListPageComponent();
+        }
+        else {
+            page = new PAGES.Page404Component();
+        }
+
+        if (this.app) {
+            this.app.replaceWith(page.getContent());
         }
     }
 

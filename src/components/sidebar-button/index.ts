@@ -1,1 +1,1 @@
-export { default as SidebarButton } from './sidebar-button.hbs?raw';
+export { SidebarButtonComponent } from "./sidebar-button";

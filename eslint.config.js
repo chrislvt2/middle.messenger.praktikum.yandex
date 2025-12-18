@@ -4,25 +4,21 @@ import tsparser from "@typescript-eslint/parser";
 
 export default defineConfig([
     {
-        files: ["**/*.{ts,tsx}"], // Применяется только к TS/TSX файлам
+        files: ["**/*.{ts,tsx}"],
         plugins: {
-            "@typescript-eslint": tseslint, // Регистрируем плагин
+            "@typescript-eslint": tseslint,
         },
         languageOptions: {
-            parser: tsparser, // Используем TS парсер
+            parser: tsparser,
             parserOptions: {
-                project: "./tsconfig.json", // Укажите путь к вашему tsconfig
+                project: "./tsconfig.json",
                 ecmaVersion: "latest",
                 sourceType: "module"
             }
         },
         rules: {
-            // TypeScript-специфичные правила
             "@typescript-eslint/no-unused-vars": "error",
             "@typescript-eslint/no-explicit-any": "warn",
-
-            // Ваши кастомные правила
-            // "max-len": ["warn", 100],
             "max-params": ["error", 3]
         }
     },

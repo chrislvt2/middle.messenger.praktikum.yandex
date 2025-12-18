@@ -1,1 +1,1 @@
-export { default as Error } from './error.hbs?raw';
+export { ErrorComponent } from "./error";

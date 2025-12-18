@@ -1,10 +1,10 @@
 import {Block} from "../../framework/block.ts";
-import {ButtonComponent} from "../../components/button/button.ts";
-import {SearchFieldComponent} from "../../components/search-field/search-field.ts";
+import {ButtonComponent} from "../../components";
+import {SearchFieldComponent} from "../../components";
 import {type PreviewChatModel, previewChats} from '../../mockData.ts';
-import {FormComponent} from "../../components/form/form.ts";
+import {FormComponent} from "../../components";
 import {messageValidator} from "../../validation";
-import {ChatPreviewComponent} from "../../components/chat-preview/chat-preview.ts";
+import {ChatPreviewComponent} from "../../components";
 
 
 export class ChatListPageComponent extends Block {

@@ -1,13 +1,12 @@
 import {Block, type BlockProps} from "../../framework/block.ts";
-import {InputComponent} from "../input/input.ts";
+import {InputComponent} from "../input";
 import type {ValidationResult} from "../../validation/validation-result.model.ts";
 
 export interface FormFieldProps extends BlockProps {
     id: string;
     name: string;
     type: string;
-    value?: any;
-    validator?: any;
+    value?: unknown;
 }
 
 export class FormFieldComponent extends Block {

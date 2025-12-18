@@ -5,8 +5,7 @@ export interface InputProps extends BlockProps {
     id: string;
     name: string;
     type: string;
-    value?: any;
-    validator?: any;
+    value?: unknown;
 }
 
 export class InputComponent extends Block {
@@ -31,7 +30,7 @@ export class InputComponent extends Block {
 
         const result: ValidationResult = this.props.validator(this.value);
         this.setAttributes({
-            class: result.isValid ? 'input' : 'input _invalid',
+            class: result.isValid ? 'input' : 'input invalid',
         });
         this.props.validationHandler(result);
 

@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import { EventBus, type EventCallback } from "./event-bus.ts";
 
 export interface BlockProps {
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 export class Block {
@@ -21,7 +21,7 @@ export class Block {
 
     protected children: Record<string, Block>;
 
-    protected lists: Record<string, any[]>;
+    protected lists: Record<string, unknown[]>;
 
     protected eventBus: () => EventBus;
 
@@ -38,7 +38,7 @@ export class Block {
 
     private _addEvents(): void {
         const { events = {} } = this.props;
-        Object.keys(events).forEach(eventName => {
+        Object.keys(events as Record<string, EventCallback[]>).forEach((eventName: string): void => {
             if (this._element) {
                 this._element.addEventListener(eventName, events[eventName]);
             }
@@ -76,18 +76,18 @@ export class Block {
     }
 
     protected componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        // console.log(oldProps, newProps);
+        console.log(oldProps, newProps);
         return true;
     }
 
     private _getChildrenPropsAndProps(propsAndChildren: BlockProps): {
         children: Record<string, Block>,
         props: BlockProps,
-        lists: Record<string, any[]>
+        lists: Record<string, unknown[]>
     } {
         const children: Record<string, Block> = {};
         const props: BlockProps = {};
-        const lists: Record<string, any[]> = {};
+        const lists: Record<string, unknown[]> = {};
 
         Object.entries(propsAndChildren).forEach(([key, value]) => {
             if (value instanceof Block) {
@@ -95,7 +95,7 @@ export class Block {
             } else if (Array.isArray(value)) {
                 lists[key] = value;
             } else {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                 
                 props[key] = value;
             }
         });
@@ -106,14 +106,14 @@ export class Block {
     protected addAttributes(): void {
         const { attr = {} } = this.props;
 
-        Object.entries(attr).forEach(([key, value]) => {
+        Object.entries(attr as Record<string, unknown>).forEach(([key, value]) => {
             if (this._element) {
                 this._element.setAttribute(key, value as string);
             }
         });
     }
 
-    protected setAttributes(attr: any): void {
+    protected setAttributes(attr: Record<string, unknown>): void {
         Object.entries(attr).forEach(([key, value]) => {
             if (this._element) {
                 this._element.setAttribute(key, value as string);
@@ -128,18 +128,6 @@ export class Block {
 
         Object.assign(this.props, nextProps);
     };
-
-    public setLists = (nextList: Record<string, any[]>): void => {
-        if (!nextList) {
-            return;
-        }
-
-        Object.assign(this.lists, nextList);
-    };
-
-    get element(): HTMLElement | null {
-        return this._element;
-    }
 
     private _render(): void {
         const propsAndStubs = { ...this.props };
@@ -197,16 +185,15 @@ export class Block {
         return this._element;
     }
 
-    private _makePropsProxy(props: any): any {
-        // eslint-disable-next-line @typescript-eslint/no-this-alias
+    private _makePropsProxy(props: Record<string, unknown>): unknown {
         const self = this;
 
         return new Proxy(props, {
-            get(target: any, prop: string) {
+            get(target: Record<string, unknown>, prop: string) {
                 const value = target[prop];
                 return typeof value === 'function' ? value.bind(target) : value;
             },
-            set(target: any, prop: string, value: any) {
+            set(target: Record<string, unknown>, prop: string, value: unknown) {
                 const oldTarget = { ...target };
                 target[prop] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);

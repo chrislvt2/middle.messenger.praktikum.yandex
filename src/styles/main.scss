@@ -20,7 +20,6 @@ body {
 
 .form {
     width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +29,7 @@ body {
         width: 100%;
     }
 
-    &._disabled {
+    .disabled {
         input {
             border: none;
             pointer-events: none;
@@ -58,15 +57,12 @@ body {
       list-style-type: none;
     }
   }
+
     &__main-content {
         width: 100%;
         display: flex;
         height: 100%;
         flex-direction: column;
-    }
-
-    &__messages {
-        height: 100%;
     }
 
     &__message-form-wrapper {
@@ -88,30 +84,30 @@ body {
 
   &__messages {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 }
 
-.login-page,
-.registration-page {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-page__wrapper {
-    width: 340px;
-    height: 460px;
-    padding: 50px 30px;
+.login-page {
+    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
-    box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+
+    &__wrapper {
+        width: 340px;
+        height: 460px;
+        padding: 50px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+    }
 }
 
 .profile-page {
@@ -268,7 +264,7 @@ body {
 }
 
 .input {
-    &._invalid {
+    &.invalid {
         border-color: red;
     }
 }

@@ -1,8 +1,8 @@
 import {Block} from "../../framework/block.ts";
-import {ButtonComponent} from "../../components/button/button.ts";
-import {SidebarButtonComponent} from "../../components/sidebar-button/sidebar-button.ts";
-import {FormComponent} from "../../components/form/form.ts";
-import {AvatarComponent} from "../../components/avatar/avatar.ts";
+import {ButtonComponent} from "../../components";
+import {SidebarButtonComponent} from "../../components";
+import {FormComponent} from "../../components";
+import {AvatarComponent} from "../../components";
 import {emailValidator, loginValidator, nameValidator, passwordValidator, phoneValidator} from "../../validation";
 
 export class ProfilePageComponent extends Block {
@@ -11,7 +11,7 @@ export class ProfilePageComponent extends Block {
             profileEditMode: false,
             passwordEditMode: false,
             profileForm: new FormComponent({
-                class: "_disabled",
+                class: "disabled",
                 formFields: [
                     {
                         id: "emailField",
@@ -68,7 +68,7 @@ export class ProfilePageComponent extends Block {
                     this.setProps({profileEditMode: false});
                     this.children.profileForm.setProps({
                         submitVisible: false,
-                        class: "_disabled",
+                        class: "disabled",
                     });
                 },
                 submitVisible: false,

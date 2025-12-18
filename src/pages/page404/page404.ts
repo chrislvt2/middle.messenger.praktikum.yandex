@@ -1,6 +1,6 @@
 import {Block} from "../../framework/block.ts";
-import {ButtonComponent} from "../../components/button/button.ts";
-import {ErrorComponent} from "../../components/error/error.ts";
+import {ButtonComponent} from "../../components";
+import {ErrorComponent} from "../../components";
 
 export class Page404Component extends Block {
     constructor() {
