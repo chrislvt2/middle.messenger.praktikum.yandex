@@ -35,7 +35,7 @@
 # Ссылки на страницы
 - [Страница авторизации](/src/pages/login/login.hbs)
 - [Страница регистрации](/src/pages/registration/registration.hbs)
-- [Страница со списком чатов и лентой переписки (на данный момент заглушка)](/src/pages/chat-list/chat-list.hbs)
+- [Страница со списком чатов и лентой переписки](/src/pages/chat-list/chat-list.hbs)
 - [Страница пользователя с возможностью редактирования данных](/src/pages/profile/profile.hbs)
 - [Страница 404](/src/pages/page404/page404.hbs)
 - [Страница 5**](/src/pages/page500/page500.hbs)

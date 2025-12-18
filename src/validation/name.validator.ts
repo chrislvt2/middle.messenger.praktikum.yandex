@@ -1,9 +1,11 @@
+import type {ValidationResult} from "./validation-result.model.ts";
+
 /**
  * Валидация имени с подробными сообщениями об ошибках
  * @param name - имя для проверки
  * @returns Объект с результатом валидации
  */
-export function nameValidator(name: string): { isValid: boolean; message?: string } {
+export function nameValidator(name: string): ValidationResult {
     if (!name || name.trim() === '') {
         return {isValid: false, message: 'Имя обязательно для заполнения'};
     }
