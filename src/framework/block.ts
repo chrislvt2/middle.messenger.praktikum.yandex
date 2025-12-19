@@ -36,6 +36,17 @@ export class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
+    private _removeEvents(): void {
+        const props = this.props as { events?: Record<string, EventCallback> };
+        const { events = {} } = props;
+
+        Object.keys(events).forEach((eventName: string): void => {
+            if (this._element) {
+                this._element.removeEventListener(eventName, events[eventName]);
+            }
+        });
+    }
+
     private _addEvents(): void {
         const props = this.props as { events?: Record<string, EventCallback> };
         const { events = {} } = props;
@@ -172,6 +183,7 @@ export class Block {
 
         const newElement = fragment.content.firstElementChild as HTMLElement;
         if (this._element && newElement) {
+            this._removeEvents();
             this._element.replaceWith(newElement);
         }
         this._element = newElement;
