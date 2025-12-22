@@ -1,0 +1,33 @@
+import {Block, type BlockProps} from "../../framework/block.ts";
+import type {PreviewChatModel} from "../../mockData.ts";
+
+export interface ChatPreviewProps extends BlockProps {
+    data: PreviewChatModel;
+    clickHandler: (selectedData: PreviewChatModel) => void;
+}
+
+export class ChatPreviewComponent extends Block {
+    constructor(props: ChatPreviewProps) {
+        super({
+            ...props,
+            events: {
+                click: () => {
+                    props.clickHandler(props.data);
+                    return;
+                },
+            },
+        });
+    }
+
+    override render() {
+        return `
+            <div class="chat-preview">
+                <div class="chat-preview__header">
+                    <div class="chat-preview__name">{{data.name}}</div>
+                    <div class="chat-preview__time">{{data.time}}</div>
+                </div>
+                <div class="chat-preview__content">{{data.message}}</div>
+            </div>
+        `;
+    }
+}

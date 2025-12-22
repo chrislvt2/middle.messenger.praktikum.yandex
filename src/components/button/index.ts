@@ -1,1 +1,2 @@
-export { default as Button } from './button.hbs?raw';
+export {ButtonComponent} from "./button";
+export type {ButtonProps} from "./button";
