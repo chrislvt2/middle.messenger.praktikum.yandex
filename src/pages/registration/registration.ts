@@ -2,9 +2,12 @@ import {Block} from "../../framework/block.ts";
 import {ButtonComponent} from "../../components";
 import {FormComponent} from "../../components";
 import {emailValidator, loginValidator, nameValidator, passwordValidator, phoneValidator} from "../../validation";
+import {Router} from "../../framework/router.ts";
+import {ROUTES} from "../../models/router.model.ts";
 
 export class RegistrationPageComponent extends Block {
     constructor() {
+        const router = new Router();
         super({
             registrationForm: new FormComponent({
                 title: "Регистрация",
@@ -61,23 +64,27 @@ export class RegistrationPageComponent extends Block {
                 ],
                 submitButton: {
                     label: "Зарегестрироваться",
+                    onClick: (): void => {
+                        router.go(ROUTES.LOGIN);
+                    },
                 },
             }),
             returnToLoginButton: new ButtonComponent({
                 label: "Войти",
+                onClick: (): void => {
+                    router.go(ROUTES.LOGIN);
+                },
             }),
         });
     }
 
     public override render() {
         return `
-            <main id="app">
                 <div class="login-page">
                     <div class="login-page__wrapper">
                         {{{ registrationForm }}}
                         {{{ returnToLoginButton }}}
                     </div>
-                </div>
-            </main>`;
+                </div>`;
     }
 }

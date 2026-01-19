@@ -1,6 +1,8 @@
 import Handlebars from 'handlebars';
 import {EventBus, type EventCallback} from "./event-bus.ts";
 
+export type BlockConstructor = new (config: BlockProps) => Block;
+
 export interface BlockProps {
     [key: string]: unknown;
 }
@@ -229,7 +231,8 @@ export class Block {
     public show(): void {
         const content = this.getContent();
         if (content) {
-            content.style.display = 'block';
+            // content.style.display = 'block';
+            content.style.removeProperty('display');
         }
     }
 

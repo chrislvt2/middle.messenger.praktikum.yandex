@@ -5,10 +5,14 @@ import {type PreviewChatModel, previewChats} from '../../mockData.ts';
 import {FormComponent} from "../../components";
 import {messageValidator} from "../../validation";
 import {ChatPreviewComponent} from "../../components";
+import {Router} from "../../framework/router.ts";
+import {ROUTES} from "../../models/router.model.ts";
 
 
 export class ChatListPageComponent extends Block {
     constructor() {
+        const router = new Router();
+
         const chatPreviewFields = previewChats.map((previewChat: PreviewChatModel) => {
             return new ChatPreviewComponent({
                 data: previewChat,
@@ -38,15 +42,16 @@ export class ChatListPageComponent extends Block {
                 class: "chat-page__search-input",
             }),
             profileButton: new ButtonComponent({
-                id: "openProfile",
                 label: "Профиль",
+                onClick: (): void => {
+                    router.go(ROUTES.PROFILE);
+                },
             }),
         });
     }
 
     public override render() {
         return `
-            <main id="app">
                 <div class="chat-page">
                     <div class="chat-page__list">
                         <div class="chat-page__settings">
@@ -75,7 +80,6 @@ export class ChatListPageComponent extends Block {
                         {{/if}}
                     </div>
                 </div>
-            </main>
         `;
     }
 }

@@ -1,9 +1,18 @@
 import {Block, type BlockProps} from "../../framework/block.ts";
+import {Router} from "../../framework/router.ts";
+import {ROUTES} from "../../models/router.model.ts";
 
 export class SidebarButtonComponent extends Block {
     constructor(props: BlockProps) {
+        const router = new Router();
+
         super({
             ...props,
+            events: {
+                click: (e: Event) => {
+                    router.go(ROUTES.CHAT_LIST);
+                },
+            },
         });
     }
 

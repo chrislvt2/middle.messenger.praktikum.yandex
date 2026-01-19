@@ -4,9 +4,12 @@ import {SidebarButtonComponent} from "../../components";
 import {FormComponent} from "../../components";
 import {AvatarComponent} from "../../components";
 import {emailValidator, loginValidator, nameValidator, passwordValidator, phoneValidator} from "../../validation";
+import {ROUTES} from "../../models/router.model.ts";
+import {Router} from "../../framework/router.ts";
 
 export class ProfilePageComponent extends Block {
     constructor() {
+        const router = new Router();
         super({
             profileEditMode: false,
             passwordEditMode: false,
@@ -126,6 +129,9 @@ export class ProfilePageComponent extends Block {
             exitPasswordButton: new ButtonComponent({
                 id: "exitProfileButton",
                 label: "Выйти",
+                onClick: (): void => {
+                    router.go(ROUTES.LOGIN);
+                },
             }),
         });
     }

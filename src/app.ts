@@ -1,60 +1,39 @@
+import {Router} from "./framework/router.ts";
+import {ROUTES} from "./models/router.model.ts";
 import * as PAGES from "./pages";
-import {Block} from "./framework/block.ts";
 
-interface StateModel {
-    page: string;
-}
 
 export default class App {
     public app: HTMLElement | null;
 
-    public state: StateModel = {
-        page: "loginPage",
-    };
-
     constructor() {
-        this.app = document.getElementById('app');
-        this.initEventListeners();
+        this.render();
     }
 
     public render(): void {
-        this.app = document.getElementById('app');
+        const router = new Router("#app");
 
-        let page: Block;
-        if (this.state.page === 'loginPage') {
-            page = new PAGES.LoginPageComponent();
-        } else if (this.state.page === 'registrationPage') {
-            page = new PAGES.RegistrationPageComponent();
-        } else if (this.state.page === '500Page') {
-            page = new PAGES.Page500Component();
-        } else if (this.state.page === 'profilePage') {
-            page = new PAGES.ProfilePageComponent();
-        } else if (this.state.page === 'chatListPage') {
-            page = new PAGES.ChatListPageComponent();
-        } else {
-            page = new PAGES.Page404Component();
-        }
+        router
+            .use(ROUTES.LOGIN, PAGES.LoginPageComponent)
+            .use(ROUTES.REGISTRATION, PAGES.RegistrationPageComponent)
+            .use(ROUTES.ERROR_404, PAGES.Page404Component)
+            .use(ROUTES.ERROR_500, PAGES.Page500Component)
+            .use(ROUTES.PROFILE, PAGES.ProfilePageComponent)
+            .use(ROUTES.CHAT_LIST, PAGES.ChatListPageComponent)
+            .start();
 
-        if (this.app) {
-            this.app.replaceWith(page.getContent());
-        }
-    }
-
-    private initEventListeners(): void {
-        const navigationItems = document.querySelectorAll('.navigation');
-        navigationItems.forEach(item => {
-            item.addEventListener('click', (e: Event) => {
-                e.preventDefault();
-                const target = e.target as HTMLElement;
-                if (target.dataset.page) {
-                    this.changePage(target.dataset.page);
-                }
-            });
-        });
-    }
-
-    private changePage(page: string): void {
-        this.state.page = page;
-        this.render();
+        // Через секунду контент изменится сам, достаточно дёрнуть переход
+        // setTimeout(() => {
+        //     router.go(ROUTES.LOGIN);
+        // }, 1000);
+        //
+        // setTimeout(() => {
+        //     router.go(ROUTES.REGISTRATION);
+        // }, 2000);
+        //
+        // // А можно и назад
+        // setTimeout(() => {
+        //     router.back();
+        // }, 4000);
     }
 }
